@@ -1,29 +1,27 @@
-import styled from 'styled-components';
-
-const boardHeight = 8;
-const boardWidth = 8;
-
-const Pixel = styled.div`
-  height: 70px;
-  width: 70px;
-  border: 1px solid black;
-  display: table-cell;
-`;
-
-const StyledRow = styled.div`
-  display: table-row;
-`
-
-function createMany(Component, qtd) {
-  return Array.from(Array(qtd)).map((_, index) => <Component key={index} />)
-};
-
-function Row(){
-  return <StyledRow>{createMany(Pixel, boardHeight)}</StyledRow>
-}
+import { useState } from 'react';
+import { HexGrid, Pattern } from 'react-hexgrid-with-context-api';
+import { StyledLayout } from './styles';
+import { hexagons as defaultHexagons } from '../../data/grid/';
+import config from '../../data/grid/config'
+import Hexagon from './Hexagon';
+import spear from '../../assets/icons/spear.svg';
+import sword from '../../assets/icons/sword.svg';
+import horse from '../../assets/icons/horse.svg';
 
 function Board() {
-  return <div>{createMany(Row, boardWidth)}</div>
+  const [hexagons, setHexagons] = useState(defaultHexagons);
+  
+  const { layout } = config;
+  const size = { x: layout.width, y: layout.height };
+
+  return <HexGrid width={config.width} height={config.height}>
+    <StyledLayout size={size} flat={layout.flat} spacing={layout.spacing} origin={config.origin}>
+      {hexagons.map((hex, index) => <Hexagon hex={hex} key={config.mapProps + index} index={index} />)}
+    </StyledLayout>
+    <Pattern id="spear" link={spear} />
+    <Pattern id="sword" link={sword} />
+    <Pattern id="horse" link={horse} />
+  </HexGrid>
 }
 
 export default Board;
