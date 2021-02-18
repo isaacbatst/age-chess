@@ -10,13 +10,20 @@ import horse from '../../assets/icons/horse.svg';
 
 function Board() {
   const [hexagons, setHexagons] = useState(defaultHexagons);
+  const [selectedHexagon, setSelectedHexagon] = useState(null);
   
   const { layout } = config;
   const size = { x: layout.width, y: layout.height };
 
+  function handleHexClick({ index }) {
+    setSelectedHexagon(index);
+  }
+
+  console.log(selectedHexagon)
+
   return <HexGrid width={config.width} height={config.height}>
     <StyledLayout size={size} flat={layout.flat} spacing={layout.spacing} origin={config.origin}>
-      {hexagons.map((hex, index) => <Hexagon hex={hex} key={config.mapProps + index} index={index} />)}
+      {hexagons.map((hex, index) => <Hexagon hex={{ ...hex, index }} key={index} onClick={handleHexClick}/>)}
     </StyledLayout>
     <Pattern id="spear" link={spear} />
     <Pattern id="sword" link={sword} />

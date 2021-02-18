@@ -15,7 +15,7 @@ export const StyledLayout = styled(Layout)`
 
   g polygon {
     stroke: #aaa;
-    stroke-width: 0.2;
+    stroke-width: 0.3;
     transition: fill-opacity .2s;
   }
   g text {
@@ -43,5 +43,6 @@ const hexColorMap = {
 export const StyledHex = styled(Hexagon)`
   g polygon {
     stroke: ${({ owner }) => hexColorMap[owner]};
+    fill-opacity: ${({ selected }) => selected ? 1 : 0.5}
   }
 `

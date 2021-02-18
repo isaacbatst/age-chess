@@ -13,11 +13,13 @@ export const hexagons = pureHexagons.map((hexagon, index) => {
     const [owner, map] = ownerArray;
 
     return {
-      ...hexagon,
+      coordinates: hexagon,
       owner,
       icon: map[index]
     }
   }
 
-  return hexagon
+  return {
+    coordinates: hexagon
+  }
 })
