@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Layout } from 'react-hexgrid-with-context-api';
+import { Layout, Hexagon } from 'react-hexgrid-with-context-api';
 
 export const StyledLayout = styled(Layout)`
   g {
@@ -14,7 +14,7 @@ export const StyledLayout = styled(Layout)`
   }
 
   g polygon {
-    stroke: #3F51B5;
+    stroke: #aaa;
     stroke-width: 0.2;
     transition: fill-opacity .2s;
   }
@@ -31,5 +31,17 @@ export const StyledLayout = styled(Layout)`
     stroke-opacity: 0.3;
     stroke-linecap: round;
     stroke-linejoin: round;
+  }
+`
+
+const hexColorMap = {
+  player1: "blue",
+  player2: "red",
+  none: ""
+}
+
+export const StyledHex = styled(Hexagon)`
+  g polygon {
+    stroke: ${({ owner }) => hexColorMap[owner]};
   }
 `

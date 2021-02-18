@@ -1,11 +1,16 @@
-import { Hexagon as Hex,  Text } from 'react-hexgrid-with-context-api'
+import { Text } from 'react-hexgrid-with-context-api'
+import { StyledHex } from './styles';
+
+
 
 function Hexagon(props) {
-  const { hex: { q, r, s, icon = "" }, index } = props;
+  const { hex: { q, r, s, icon = "", owner = "none" }, index } = props;
 
-  return <Hex q={q} r={r} s={s} fill={icon}>
+  console.log(owner)
+
+  return <StyledHex q={q} r={r} s={s} fill={icon} owner={owner}>
     <Text>{index.toString()}</Text>
-  </Hex>
+  </StyledHex>
 }
 
 export default Hexagon;
