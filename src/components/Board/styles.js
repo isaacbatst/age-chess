@@ -20,7 +20,7 @@ export const StyledLayout = styled(Layout)`
   }
   g text {
     font-size: 0.3em;
-    fill: #FFFFFF;
+    fill: black;
     fill-opacity: 0.8;
     transition: fill-opacity .2s;
   }
