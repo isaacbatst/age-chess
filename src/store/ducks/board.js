@@ -1,17 +1,36 @@
+import { HexUtils } from "react-hexgrid-with-context-api"
+
 export const Types = {
   SELECT_HEXAGON: "board/SELECT_HEXAGON",
   SETUP: "board/SETUP"
 }
 
-const SETUPialState = {
+const initialState = {
   config: null,
   hexagons: [],
   selectedHexagon: null,
 }
 
-export const reducer = (state = SETUPialState, action) => {
-  switch(action.type){
-    case Types.SELECT_HEXAGON: 
+export const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case Types.SELECT_HEXAGON:
+      if(state.selectedHexagon === action.payload.id) {
+        return {
+          ...state,
+          selectedHexagon: null
+        }
+      }
+
+      if (state.selectedHexagon) {
+        const [a, b] = state.hexagons.filter(hexagon => hexagon.id === state.selectedHexagon || hexagon.id === action.payload.id)
+
+        console.log(HexUtils.distance(a.coordinates, b.coordinates))
+        return {
+          ...state,
+          selectedHexagon: null
+        }
+      }
+
       return {
         ...state,
         selectedHexagon: action.payload.id
@@ -26,7 +45,7 @@ export const reducer = (state = SETUPialState, action) => {
   }
 }
 
-export function selectHexagonx(id){
+export function selectHexagon(id) {
   return {
     type: Types.SELECT_HEXAGON,
     payload: {
@@ -35,7 +54,7 @@ export function selectHexagonx(id){
   }
 }
 
-export function setup(config, hexagons){
+export function setup(config, hexagons) {
   return {
     type: Types.SETUP,
     payload: {
