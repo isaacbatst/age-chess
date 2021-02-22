@@ -1,7 +1,7 @@
-import Board from "../Board";
 import { Provider } from "react-redux";
 import { store } from "../../store";
 import { StyledApp, StyledHeader } from "./styles";
+import Game from "../Game";
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <Provider store={store}>
       <StyledApp>
         <StyledHeader>Age Chess</StyledHeader>
-        <Board />
+        <Game />
       </StyledApp>
     </Provider>
   );
