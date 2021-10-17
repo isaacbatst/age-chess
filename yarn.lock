@@ -9015,10 +9015,10 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
-react-hexgrid-with-context-api@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-hexgrid-with-context-api/-/react-hexgrid-with-context-api-1.0.0.tgz#a125c7c9acbad472c4a425681d18a184c8ac4a2b"
-  integrity sha512-mnDZfDwDuDtzB7LIAVdWv43AUUhUTccpT3Sxm6nJYwnr/A0AVqolbtvPMiaI/ZRwT5db88gS3vT+dkXUo7hFJQ==
+react-hexgrid-with-context-api@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-hexgrid-with-context-api/-/react-hexgrid-with-context-api-1.0.9.tgz#32f20bf3609620b320653268c401de57a5805244"
+  integrity sha512-LSmtCaOwnO03UgQZmIM9NfkPUQR69ByzR7mtrcGxY4aDaikpZLhqF4sZHztL0+4u+WTQ43GuqN1AI1PGp5vYdQ==
   dependencies:
     classnames "^2.2.5"
 

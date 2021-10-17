@@ -26,12 +26,14 @@ function Board() {
     y: layout.height
   }
 
-  return <HexGrid width={config.width} height={config.height}>
-    <StyledLayout size={hexSize} flat={layout.flat} spacing={layout.spacing} origin={config.origin}>
-      {hexagons.map((hex, index) => <Hexagon hex={{ ...hex, index }} key={index + config.mapProps} />)}
-    </StyledLayout>
-    {Object.entries(patterns).map(([name, link], index) => <Pattern key={index} id={name} size={hexSize} link={link} />)}
-  </HexGrid>
+  return (
+    <HexGrid width={config.width} height={config.height}>
+      <StyledLayout size={hexSize} flat={layout.flat} spacing={layout.spacing} origin={config.origin}>
+        {hexagons.map((hex, index) => <Hexagon hex={{ ...hex, index }} key={index + config.mapProps} />)}
+      </StyledLayout>
+      {Object.entries(patterns).map(([name, link], index) => <Pattern key={index} id={name} size={hexSize} link={link} />)}
+    </HexGrid>
+  )
 }
 
 export default Board;

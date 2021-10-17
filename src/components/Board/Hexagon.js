@@ -18,9 +18,11 @@ function Hexagon(props) {
     dispatch(selectHexagon(hex.id))
   }
 
-  return <StyledHex q={q} r={r} s={s} fill={icon} owner={owner} onClick={handleClick} selected={isSelected}>
-    <Text>{hex.id}</Text>
-  </StyledHex>
+  return (
+    <StyledHex q={q} r={r} s={s} fill={icon} owner={owner} onClick={handleClick} selected={isSelected}>
+      <Text>{hex.id}</Text>
+    </StyledHex>
+  )
 }
 
 export default Hexagon;

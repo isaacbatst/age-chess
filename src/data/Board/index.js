@@ -2,33 +2,32 @@ import { GridGenerator, HexUtils } from 'react-hexgrid-with-context-api';
 import iconMap from './iconMap';
 import config from './config';
 
-const hexGrid = GridGenerator.getGenerator(config.map);
-const hexagonsCoordinates = hexGrid(...config.mapProps);
-const playersEntries = Object.entries(iconMap.players)
+const hexagonsCoordinates = GridGenerator.getGenerator(config.map)(...config.mapProps);
+const playersHexagons = Object.entries(iconMap.players)
 
-const hexagons = hexagonsCoordinates.map((coordinates) => {
-  const id = HexUtils.getID(coordinates)
-  const ownerArray = playersEntries.find(([_, icons]) => icons ? icons[id] : undefined)
-  
+const hexagonsWithPlayers = hexagonsCoordinates.map((coordinates) => {
+  const coordinatesString = HexUtils.getID(coordinates)
+  const playerWithHexagons = playersHexagons.find(([_, hexagons]) => hexagons && hexagons[coordinatesString])
+
   const hexagon = {
-    id, coordinates
+    id: coordinatesString, coordinates
+  }
+
+  if(!playerWithHexagons) {
+    return hexagon;
   }
   
-  if (ownerArray) {
-    const [owner, map] = ownerArray;
+  const [player, playerHexagons] = playerWithHexagons;
 
-    return {
-      ...hexagon,
-      owner,
-      icon: map[id]
-    }
+  return {
+    ...hexagon,
+    owner: player,
+    icon: playerHexagons[coordinatesString]
   }
-
-  return hexagon;
 })
 
 const grid = {
-  hexagons,
+  hexagons: hexagonsWithPlayers,
   config
 }
 
