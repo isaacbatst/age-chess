@@ -15,22 +15,12 @@ export const StyledLayout = styled(Layout)`
 
   g polygon {
     stroke: #aaa;
-    stroke-width: 0.3;
-    transition: fill-opacity .2s;
   }
+
   g text {
     font-size: 0.3em;
     fill: black;
     fill-opacity: 0.8;
-    transition: fill-opacity .2s;
-  }
-  path {
-    fill: none;
-    stroke: hsl(60, 20%, 70%);
-    stroke-width: 0.4em;
-    stroke-opacity: 0.3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
   }
 `
 
@@ -43,6 +33,17 @@ const hexColorMap = {
 export const StyledHex = styled(Hexagon)`
   g polygon {
     stroke: ${({ owner }) => hexColorMap[owner]};
+    stroke-width: ${({ owner }) => owner !== "none" ? 0.6 : 0.2};
     fill-opacity: ${({ selected }) => selected ? 1 : 0.5}
+  }
+
+  g rect.green {
+    fill: green;
+    fill-opacity: 1;
+  }
+
+  g rect.red {
+    fill: red;
+    fill-opacity: 1;
   }
 `

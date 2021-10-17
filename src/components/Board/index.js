@@ -17,7 +17,7 @@ function Board() {
 
   useEffect(() => {
     dispatch(setup(config, initialHexagons))
-  }, [dispatch])
+  }, [dispatch]);
 
   const { layout } = config;
 
