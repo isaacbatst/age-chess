@@ -1,5 +1,5 @@
 export const attackTypes = {
-  'infantry': (attacker, defender) => {
+  'default': (attacker, defender) => {
     defender.health.actual -= 1;
 
     return {

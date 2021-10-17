@@ -24,7 +24,7 @@ function SelectedHexagonDetails({selectedHexagon}) {
   }
 
   return (
-    <section className="selected-hexagon-details">
+    <section className="selected-hexagon-details details left">
       { piece && pieceDetails(piece) }
       { hexDetails(owner, coordinates) }
     </section>

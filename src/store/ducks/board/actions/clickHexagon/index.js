@@ -58,12 +58,13 @@ const isClickedHexagonTheSameSelected = (selected, clicked) => selected && selec
 const isHexagonOwnedByPlayer = (hexagon, playerTurn) => hexagon && hexagon.owner === playerTurn;
 
 function getNextTurn(state){
-  const { playerTurnIndex, players } = state;
+  const { playerTurnIndex, players, turnsCounter } = state;
   const nextPlayerTurnIndex = playerTurnIndex >= (players.length - 1) ? 0 : playerTurnIndex + 1;
 
   return {
     ...state,
     playerTurnIndex: nextPlayerTurnIndex,
     selectedHexagon: null,
+    turnsCounter: turnsCounter + 1
   }
 }

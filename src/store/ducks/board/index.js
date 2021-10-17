@@ -11,6 +11,7 @@ const initialState = {
   selectedHexagon: null,
   players: ['player1', 'player2'],
   playerTurnIndex: 0,
+  turnsCounter: 1,
 }
 
 export const reducer = (state = initialState, action) => {

@@ -1,17 +1,8 @@
+
 .game {
   width: 100%;
   box-sizing: border-box;
   padding: 0 100px;
-}
-
-.game .selected-hexagon-details {
-  position: absolute;
-  right: 50px;
-  justify-content: center;
-  padding: 30px;
-  background-color: #3769c7;
-  color: white;
-  text-align: center;
 }
 
 .game-container {
@@ -19,6 +10,23 @@
   align-items: center;
   display: flex;
   position: relative;
+}
+
+.game .details {
+  position: absolute;
+  justify-content: center;
+  padding: 30px;
+  background-color: #3769c7;
+  color: white;
+  text-align: center;
+}
+
+.details.left {
+  left: 50px;
+}
+
+.details.right {
+  right: 50px;
 }
 
 .game .selected-hexagon-details > div {
