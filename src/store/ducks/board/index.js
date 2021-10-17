@@ -15,17 +15,17 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Types.CLICK_HEXAGON:
-      const selectedHexagon = state.hexagons.find(hexagon => hexagon.id === state.selectedHexagon)
+      if(state.selectedHexagon){
+        if(state.selectedHexagon.id === action.payload.clickedHexagon.id ) {
+          return unselectHexagon(state);
+        }
 
-      if(state.selectedHexagon === action.payload.id) {
-        return unselectHexagon(state);
+        if (state.selectedHexagon.owner !== action.payload.clickedHexagon.owner &&state.selectedHexagon.owner === state.turn) {
+          return moveOrAttack(state, action.payload.clickedHexagon)
+        }
       }
-
-      if (state.selectedHexagon && state.turn === selectedHexagon.owner) {
-        return moveOrAttack(state, action, selectedHexagon)
-      }
-
-      return selectHexagon(state, action)
+      
+      return selectHexagon(state, action.payload.clickedHexagon)
     case Types.SETUP:
       return {
         ...state,
@@ -36,11 +36,11 @@ export const reducer = (state = initialState, action) => {
   }
 }
 
-export function clickHexagon(id) {
+export function clickHexagon(clickedHexagon) {
   return {
     type: Types.CLICK_HEXAGON,
     payload: {
-      id
+      clickedHexagon
     }
   }
 }

@@ -1,7 +1,7 @@
 import { Text } from 'react-hexgrid-with-context-api'
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect'
-import { clickHexagon } from '../../store/ducks/board';
+import { clickHexagon } from '../../../store/ducks/board';
 import Health from './Piece/Health';
 import { StyledHex } from './styles';
 
@@ -10,13 +10,13 @@ function Hexagon({ hex }) {
   const { piece, owner = "none" } = hex;
   const { coordinates: { q, r, s } } = hex;
 
-  const selectIsSelected = createSelector(state => state.board.selectedHexagon, selectedHexagon => selectedHexagon === hex.id)
+  const selectIsSelected = createSelector(state => state.board.selectedHexagon, selectedHexagon => selectedHexagon && selectedHexagon.id === hex.id)
   const isSelected = useSelector(selectIsSelected);
 
   const dispatch = useDispatch();
 
   function handleClick() {
-    dispatch(clickHexagon(hex.id))
+    dispatch(clickHexagon(hex))
   }
 
   return (

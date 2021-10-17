@@ -1,0 +1,28 @@
+.game {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 150px;
+}
+
+.game .selected-hexagon-details {
+  position: absolute;
+  right: 50px;
+  justify-content: center;
+  padding: 30px;
+  background-color: #3769c7;
+  color: white;
+  text-align: center;
+}
+
+.game-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.game .selected-hexagon-details > div {
+  background-color: #2d549c;
+  margin: 15px;
+  padding: 10px;
+}

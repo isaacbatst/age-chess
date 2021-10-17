@@ -34,7 +34,7 @@ export const StyledHex = styled(Hexagon)`
   g polygon {
     stroke: ${({ owner }) => hexColorMap[owner]};
     stroke-width: ${({ owner }) => owner !== "none" ? 0.6 : 0.2};
-    fill-opacity: ${({ selected }) => selected ? 1 : 0.5}
+    fill-opacity: ${({ selected }) => selected ? 1 : 0.2}
   }
 
   g rect.green {
