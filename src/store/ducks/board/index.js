@@ -9,23 +9,27 @@ const initialState = {
   config: null,
   hexagons: [],
   selectedHexagon: null,
-  turn: 'player1'
+  players: ['player1', 'player2'],
+  playerTurnIndex: 0,
 }
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Types.CLICK_HEXAGON:
-      if(state.selectedHexagon){
-        if(state.selectedHexagon.id === action.payload.clickedHexagon.id ) {
-          return unselectHexagon(state);
-        }
+      const { selectedHexagon, players, playerTurnIndex } = state;
+      const { payload: { clickedHexagon } } = action;
 
-        if (state.selectedHexagon.owner !== action.payload.clickedHexagon.owner &&state.selectedHexagon.owner === state.turn) {
-          return moveOrAttack(state, action.payload.clickedHexagon)
-        }
+      console.log(players, playerTurnIndex)
+
+      if(selectedHexagon && selectedHexagon.id === clickedHexagon.id ) {
+        return unselectHexagon(state);
+      }
+
+      if (selectedHexagon && selectedHexagon.owner !== clickedHexagon.owner && selectedHexagon.owner === players[playerTurnIndex]) {
+        return moveOrAttack(state, clickedHexagon)
       }
       
-      return selectHexagon(state, action.payload.clickedHexagon)
+      return selectHexagon(state, clickedHexagon)
     case Types.SETUP:
       return {
         ...state,

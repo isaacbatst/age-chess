@@ -2,6 +2,7 @@ import { attackTypes } from "../../../../../data/Game/attack";
 import { addPieceAndOwner, removePieceAndOwner, updatedHexagonPiece } from "./helpers";
 
 export default function attack(state, attackerHexagon, defenderHexagon){
+  const { hexagons, players, playerTurnIndex } = state;
   const attacker = attackerHexagon.piece;
   const defender = defenderHexagon.piece;
 
@@ -10,9 +11,9 @@ export default function attack(state, attackerHexagon, defenderHexagon){
   if(doAttack){
     const result = doAttack(attacker, defender);
     
-    const hexagonsAfterAttack = state.hexagons.map(hexagon => {
+    const hexagonsAfterAttack = hexagons.map(hexagon => {
       if(hexagon.id === defenderHexagon.id  && hasDefenderDied(result)){
-        return addPieceAndOwner(defenderHexagon, result.attacker, 'player1');
+        return addPieceAndOwner(defenderHexagon, result.attacker, players[playerTurnIndex]);
       }
 
       if(hexagon.id === defenderHexagon.id ){
@@ -23,15 +24,11 @@ export default function attack(state, attackerHexagon, defenderHexagon){
         return removePieceAndOwner(hexagon);
       }
 
-      return hexagon
+      return hexagon;
     })
 
 
-    return {
-      ...state,
-      selectedHexagon: null,
-      hexagons: hexagonsAfterAttack
-    }
+    return  hexagonsAfterAttack
   }
 
   return state;

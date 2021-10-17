@@ -24,12 +24,38 @@ export function moveOrAttack(state, clickedHexagon){
   const distance = HexUtils.distance(selectedHexagon.coordinates, clickedHexagon.coordinates);
 
   if(distance === selectedHexagon.piece.move){
-    if(!clickedHexagon.owner){
-      return move(state, clickedHexagon)
+    const nextTurn = getNextTurn(state.playerTurnIndex, state.players);
+
+    const updatedState = {
+      ...state,
+      selectedHexagon: null,
+      playerTurnIndex: nextTurn
     }
 
-    return attack(state, state.selectedHexagon, clickedHexagon)
+    if(!clickedHexagon.owner){
+      const hexagons = move(state, clickedHexagon);
+
+      return {
+        ...updatedState,
+        hexagons
+      }
+    }
+
+    const hexagons = attack(state, state.selectedHexagon, clickedHexagon);
+
+    return {
+      ...updatedState,
+      hexagons
+    }
   }
 
   return state;
+}
+
+function getNextTurn(playerTurnIndex, players){
+  if(playerTurnIndex >= (players.length - 1)){
+    return 0;
+  }
+
+  return playerTurnIndex + 1;
 }
