@@ -1,4 +1,4 @@
-import { unselectHexagon, selectHexagon, moveOrAttack } from "./actions/selectHexagon"
+import handleClickHexagon from "./actions/clickHexagon"
 
 export const Types = {
   CLICK_HEXAGON: "board/CLICK_HEXAGON",
@@ -16,20 +16,8 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case Types.CLICK_HEXAGON:
-      const { selectedHexagon, players, playerTurnIndex } = state;
-      const { payload: { clickedHexagon } } = action;
-
-      console.log(players, playerTurnIndex)
-
-      if(selectedHexagon && selectedHexagon.id === clickedHexagon.id ) {
-        return unselectHexagon(state);
-      }
-
-      if (selectedHexagon && selectedHexagon.owner !== clickedHexagon.owner && selectedHexagon.owner === players[playerTurnIndex]) {
-        return moveOrAttack(state, clickedHexagon)
-      }
+      return handleClickHexagon(state, action)
       
-      return selectHexagon(state, clickedHexagon)
     case Types.SETUP:
       return {
         ...state,

@@ -20,3 +20,4 @@ export function updatedHexagonPiece(hexagon, newPiece){
     piece: newPiece
   }
 }
+
