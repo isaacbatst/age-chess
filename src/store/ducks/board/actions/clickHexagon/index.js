@@ -23,8 +23,9 @@ export default function handleClickHexagon(state, action){
   const { payload: { clickedHexagon } } = action;
 
   const isPreviouslySelectedOwnedByPlayerTurn = isHexagonOwnedByPlayer(previouslySelected, players[playerTurnIndex]); 
-  
-  if(!previouslySelected || !isPreviouslySelectedOwnedByPlayerTurn){
+  const isClickedOwnedByPlayerTurn = isHexagonOwnedByPlayer(clickedHexagon, players[playerTurnIndex])
+
+  if(!previouslySelected || !isPreviouslySelectedOwnedByPlayerTurn || isClickedOwnedByPlayerTurn){
     return selectHexagon(state, clickedHexagon)
   }
   
